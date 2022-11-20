@@ -2,9 +2,10 @@ package dominos;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Sac {
-    ArrayList<Tuile> sac;
+    List<Tuile> sac;
 
     //Constructing a Sac with nbTuile number of pieces
     public Sac(int nbTuile){
