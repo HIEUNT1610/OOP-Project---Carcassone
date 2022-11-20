@@ -2,5 +2,6 @@
 POOIG.iml
 out/
 
+# Mac OS file system
 .DS_Store
 .DS_Store/
