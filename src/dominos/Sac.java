@@ -1,4 +1,4 @@
-package OOP_Projet.Domino;
+package dominos;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,3 +26,4 @@ public class Sac {
         return this.sac.get(i);
     }
 }
+

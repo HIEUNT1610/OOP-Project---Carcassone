@@ -1,4 +1,4 @@
-package OOP_Projet.Domino;
+package dominos;
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -91,3 +91,4 @@ public class Tuile {
         System.out.println("x" + tuile.get(2).get(2) + tuile.get(2).get(1) + tuile.get(2).get(0) + "x");
     }
 }
+
