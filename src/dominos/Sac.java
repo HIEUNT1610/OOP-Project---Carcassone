@@ -23,7 +23,9 @@ public class Sac {
     //2. Taking pieces from the sac. Using i as the index, as the game is implied to start at turn 0 (picking the first
     //piece from the sac)
     public Tuile piocherTuile(int i){
-        return this.sac.get(i);
+        Tuile res = this.sac.get(i);
+        this.sac.remove(i);
+        return res;
     }
 }
 
