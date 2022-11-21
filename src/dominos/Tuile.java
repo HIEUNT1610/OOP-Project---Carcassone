@@ -1,20 +1,21 @@
 package dominos;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class Tuile {
-    LinkedList<LinkedList> tuile;
+    List<List> tuile;
     //Constructing a piece having 4 sides with 3 numbers in each as a matrix of 4x3
     public Tuile(){
         //Create a piece
-        this.tuile = new LinkedList<LinkedList>();
+        this.tuile = new LinkedList<List>();
 
         //Create 4 sides and insert into a piece
-        LinkedList<Integer> a = new LinkedList<Integer>();
-        LinkedList<Integer> b = new LinkedList<Integer>();
-        LinkedList<Integer> c = new LinkedList<Integer>();
-        LinkedList<Integer> d = new LinkedList<Integer>();
+        List<Integer> a = new LinkedList<Integer>();
+        List<Integer> b = new LinkedList<Integer>();
+        List<Integer> c = new LinkedList<Integer>();
+        List<Integer> d = new LinkedList<Integer>();
 
         //Randomize 3 numbers in each side
         Random rand = new Random();
@@ -34,12 +35,12 @@ public class Tuile {
 
     //Methods for a piece
     //1. Getting a side from index
-    public LinkedList getCoteAt(int i){
+    public List getCoteAt(int i){
         return this.tuile.get(i);
     }
     // Getting value of a side from index
     public Integer getValueCoteAt(int i){
-        LinkedList<Integer> value = this.getCoteAt(i);
+        List<Integer> value = this.getCoteAt(i);
         Integer total = 0;
         for (Integer j : value){
             total += j;
@@ -48,16 +49,16 @@ public class Tuile {
     }
 
     //2. Turning a piece left or right
-    public LinkedList<LinkedList> tournerGauche(Tuile tuile){
-        LinkedList<LinkedList> tuileG = new LinkedList<LinkedList>();
+    public List<List> tournerGauche(Tuile tuile){
+        List<List> tuileG = new LinkedList<List>();
         tuileG.add(tuile.getCoteAt(1));
         tuileG.add(tuile.getCoteAt(2));
         tuileG.add(tuile.getCoteAt(3));
         tuileG.add(tuile.getCoteAt(0));
         return tuileG;
     }
-    public LinkedList<LinkedList> tournerDroite(Tuile tuile){
-        LinkedList<LinkedList> tuileD = new LinkedList<LinkedList>();
+    public List<List> tournerDroite(Tuile tuile){
+        List<List> tuileD = new LinkedList<List>();
         tuileD.add(tuile.getCoteAt(3));
         tuileD.add(tuile.getCoteAt(0));
         tuileD.add(tuile.getCoteAt(1));
