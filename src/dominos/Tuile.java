@@ -67,6 +67,7 @@ public class Tuile {
     }
 
     //TODO 3. Comparing sides for placement, need tweaking because it is not usable now. Needs to compare opposite sides
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!! CAN NOT comparing directly between LinkedList
     public boolean comparerCote(Tuile t1, Tuile t2, int i){
         if (i == 0){
             return t1.getCoteAt(0) == t2.getCoteAt(2);
