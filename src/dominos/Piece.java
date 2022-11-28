@@ -7,7 +7,7 @@ import java.util.Random;
 public class Piece {
 
     int[][] pieceNumber;
-
+    private Case currentCase;
     /**
      * Constructor
      */
@@ -111,5 +111,15 @@ public class Piece {
      */
     public void display() {
         System.out.println(this);
+    }
+
+    /**
+     * Methods for position
+     */
+    public Case getPosition() {
+        return currentCase;
+    }
+    public void setPosition(Case cas) {
+        this.currentCase = cas;
     }
 }
