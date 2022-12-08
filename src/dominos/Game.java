@@ -8,4 +8,8 @@ public class Game {
 
     //The nextPlayble method should probably be in here too,
     //so that it can take advantage of currPiece to compare.
+
+    public void start() {
+
+    }
 }
