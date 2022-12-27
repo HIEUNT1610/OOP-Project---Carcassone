@@ -8,6 +8,7 @@ public class Piece {
 
     int[][] pieceNumber;
     private Case currentCase;
+
     /**
      * Constructor
      */

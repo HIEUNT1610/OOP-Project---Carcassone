@@ -11,7 +11,7 @@ public class Case {
     /**
      * Constructor
      */
-    public Case(Board board,int xNum, int yNum) {
+    public Case(Board board, int xNum, int yNum) {
         this.board = board;
         this.xNum = xNum;
         this.yNum = yNum;
@@ -45,6 +45,24 @@ public class Case {
      */
     public int getY() {
         return this.yNum;
+    }
+
+    /**
+     * Get the neighbour case of current case by given direction.
+     * @param board
+     * @param direction
+     * @return
+     */
+    public Case getNeighbour(Board board, Direction direction) {
+        if(direction == Direction.TOP)
+            return board.getCase(this.xNum - 1, this.yNum);
+        if(direction == Direction.BOTTOM)
+            return board.getCase(this.xNum + 1, this.yNum);
+        if(direction == Direction.LEFT)
+            return board.getCase(this.xNum, this.yNum - 1);
+        if(direction == Direction.RIGHT)
+            return board.getCase(this.xNum, this.yNum + 1);
+        return null;
     }
 
     /**

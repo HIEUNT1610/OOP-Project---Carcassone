@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private final Case[][] board;
+    private Case[][] board;
     private int nbPiece;
 
     /**
@@ -31,12 +31,31 @@ public class Board {
         ArrayList<Case> res = new ArrayList<>();
         for (int i=0; i<nbPiece*2; i++) {
             for (int j=0; j<nbPiece*2; j++) {
-                if (board[i][j].isConnected(this)) {
-                    // TODO
+                if (!board[i][j].isOccupied()
+                        && board[i][j].isConnected(this)
+                        && canPut(p, board[i][j])) {
+                    res.add(board[i][j]);
                 }
             }
         }
         return res.toArray(new Case[0]);
+    }
+
+    /**
+     * Check if the piece cen be put in given case.
+     * @param p
+     * @param c
+     * @return
+     */
+    public boolean canPut(Piece p, Case c) {
+        boolean res = true;
+        for (Direction d : Direction.values()) {
+            Case comparedCase = c.getNeighbour(this, d);
+            if(comparedCase.isOccupied()){
+                res = res & p.compareSide(comparedCase.getOccupyingPiece(), d);
+            }
+        }
+        return res;
     }
 
     public Case getCase(int i, int j) { return board[i][j]; }
@@ -72,8 +91,9 @@ public class Board {
     //the Game class instead.
     public List<Case> nextPlayable(int x, int y){
         List<Case> playble = new ArrayList<>();
+        Piece currPiece = this.board[x][y].getOccupyingPiece();
         if (!board[x][y+1].isOccupied()
-                && (board[x][y].getOccupyingPiece().compareSide(currPiece))) {
+                && (board[x][y+1].getOccupyingPiece().compareSide(currPiece, Direction.LEFT))) {
             playble.add(board[x][y+1]);
         }
         else if (!board[x][y-1].isOccupied()) {

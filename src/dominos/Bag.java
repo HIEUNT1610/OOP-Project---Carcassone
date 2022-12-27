@@ -16,6 +16,7 @@ public class Bag {
             Piece piece = new Piece();
             this.bag.add(piece);
         }
+        this.shuffle();
     }
 
     //Methods for Bag
