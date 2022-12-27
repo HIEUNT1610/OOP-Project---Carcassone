@@ -10,7 +10,7 @@ public class Program {
         System.out.println("Domino's");
         Piece p = new Piece();
         p.display();
-
+        System.out.println("Hello World");
     }
 
 
