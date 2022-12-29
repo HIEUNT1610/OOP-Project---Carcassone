@@ -108,4 +108,23 @@ public class Board {
         return playble;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        for(int i=0; i<nbPiece*2; i++){
+            List<String[]> oneLine = new ArrayList<>();
+            for(int j=0; j<nbPiece*2; j++) {
+                String[] tmp = board[i][j].toString().split("\\n");
+                oneLine.add(tmp);
+            }
+            for(int k=0; k<5; k++) {
+                for(int j=0; j<nbPiece*2; j++) {
+                    res.append(oneLine.get(j)[k]).append("   ");
+                }
+                res.append("\n");
+            }
+            res.append("\n");
+        }
+        return res.toString();
+    }
 }

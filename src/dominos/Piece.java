@@ -94,16 +94,31 @@ public class Piece {
 
     @Override
     public String toString() {
+//        StringBuilder res = new StringBuilder();
+//        int[] top = this.getSideAt(Direction.TOP);
+//        int[] left = this.getSideAt(Direction.LEFT);
+//        int[] right = this.getSideAt(Direction.RIGHT);
+//        int[] bottom = this.getSideAt(Direction.BOTTOM);
+//        res.append("* ").append(top[0]).append(" ").append(top[1]).append(" ").append(top[2]).append(" *\n");
+//        res.append(left[2]).append(" * * * ").append(right[0]).append("\n");
+//        res.append(left[1]).append(" * * * ").append(right[1]).append("\n");
+//        res.append(left[0]).append(" * * * ").append(right[2]).append("\n");
+//        res.append("* ").append(bottom[2]).append(" ").append(bottom[1]).append(" ").append(bottom[0]).append(" *\n");
+//        return res.toString();
+        return toString('*');
+    }
+
+    public String toString(char c) {
         StringBuilder res = new StringBuilder();
         int[] top = this.getSideAt(Direction.TOP);
         int[] left = this.getSideAt(Direction.LEFT);
         int[] right = this.getSideAt(Direction.RIGHT);
         int[] bottom = this.getSideAt(Direction.BOTTOM);
-        res.append("* ").append(top[0]).append(" ").append(top[1]).append(" ").append(top[2]).append(" *\n");
-        res.append(left[2]).append(" * * * ").append(right[0]).append("\n");
-        res.append(left[1]).append(" * * * ").append(right[1]).append("\n");
-        res.append(left[0]).append(" * * * ").append(right[2]).append("\n");
-        res.append("* ").append(bottom[2]).append(" ").append(bottom[1]).append(" ").append(bottom[0]).append(" *\n");
+        res.append(c).append(" ").append(top[0]).append(" ").append(top[1]).append(" ").append(top[2]).append(" ").append(c).append("\n");
+        res.append(left[2]).append(" ").append(c).append(" ").append(c).append(" ").append(c).append(" ").append(right[0]).append("\n");
+        res.append(left[1]).append(" ").append(c).append(" ").append(c).append(" ").append(c).append(" ").append(right[1]).append("\n");
+        res.append(left[0]).append(" ").append(c).append(" ").append(c).append(" ").append(c).append(" ").append(right[2]).append("\n");
+        res.append(c).append(" ").append(bottom[2]).append(" ").append(bottom[1]).append(" ").append(bottom[0]).append(" ").append(c).append("\n");
         return res.toString();
     }
 

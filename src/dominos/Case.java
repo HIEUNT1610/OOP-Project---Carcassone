@@ -18,6 +18,13 @@ public class Case {
         this.occupyingPiece = null;
     }
 
+    public Case(int xNum, int yNum) {
+        this.board = null;
+        this.xNum = xNum;
+        this.yNum = yNum;
+        this.occupyingPiece = null;
+    }
+
     /**
      * Methods related to occupying piece
      * @return occupying Piece
@@ -89,4 +96,15 @@ public class Case {
         return res;
     }
 
+    @Override
+    public String toString() {
+        if(isOccupied()){
+            return getOccupyingPiece().toString('+');
+        }
+        StringBuilder res = new StringBuilder("* * * * *");
+        for(int i=0; i<4; i++) {
+            res.append("\n* * * * *");
+        }
+        return res.toString();
+    }
 }
