@@ -1,4 +1,4 @@
-package dominos;
+package dominos.model;
 
 public enum Direction {
     TOP, LEFT, BOTTOM, RIGHT;

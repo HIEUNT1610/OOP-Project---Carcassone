@@ -1,6 +1,4 @@
-package dominos;
-
-import javax.swing.border.Border;
+package dominos.model;
 
 public class Case {
     private Board board;
@@ -73,12 +71,21 @@ public class Case {
     }
 
     /**
-     * Put a piece in a case
+     * Put a piece in a case, and return the score
      * @param p The piece taken from the sac in this turn
      */
-    public void put(Piece p) {
+    public int put(Piece p) {
         this.occupyingPiece = p;
         p.setPosition(this);
+        // calculate the score
+        int score = 0;
+        for(Direction d : Direction.values()) {
+            Case c = getNeighbour(board, d);
+            if(c.isOccupied()) {
+                score += p.getSideSumAt(d);
+            }
+        }
+        return score;
     }
 
     // in fact I want to remove the field `board` to avoid the cycle, and try to pass it by parameter
@@ -89,10 +96,15 @@ public class Case {
      * @return
      */
     public boolean isConnected(Board board) {
-        boolean res = board.isCaseOccupied(xNum-1, yNum-1);
-        res |= board.isCaseOccupied(xNum-1, yNum+1);
-        res |= board.isCaseOccupied(xNum+1, yNum-1);
-        res |= board.isCaseOccupied(xNum+1, yNum+1);
+        boolean res = false;
+        if(xNum != 0)
+            res |= board.isCaseOccupied(xNum - 1, yNum);
+        if(xNum != board.getNbPiece()*2-1)
+            res |= board.isCaseOccupied(xNum+1, yNum);
+        if(yNum != 0)
+            res |= board.isCaseOccupied(xNum, yNum-1);
+        if(yNum != board.getNbPiece()*2-1)
+            res |= board.isCaseOccupied(xNum, yNum+1);
         return res;
     }
 
@@ -102,7 +114,18 @@ public class Case {
             return getOccupyingPiece().toString('+');
         }
         StringBuilder res = new StringBuilder("* * * * *");
-        for(int i=0; i<4; i++) {
+        res.append("\n* * * * *");
+        if(xNum<10){
+            res.append("\n* (").append(xNum).append(",");
+        }else{
+            res.append("\n*(").append(xNum).append(",");
+        }
+        if(yNum<10) {
+            res.append(yNum).append(") *");
+        }else{
+            res.append(yNum).append(")*");
+        }
+        for(int i=0; i<2; i++) {
             res.append("\n* * * * *");
         }
         return res.toString();

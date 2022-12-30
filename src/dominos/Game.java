@@ -1,5 +1,9 @@
 package dominos;
 
+import dominos.model.Bag;
+import dominos.model.Board;
+import dominos.model.Player;
+
 public class Game {
     private Board board;
     private Bag bag;

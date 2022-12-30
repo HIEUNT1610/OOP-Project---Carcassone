@@ -1,18 +1,16 @@
-package dominos;
+package dominos.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Bag {
-    List<Piece> bag;
+    LinkedList<Piece> bag;
 
     /**
      * Constructing a Sac with nbPiece number of pieces
      */
     public Bag(int nbPiece){
-        this.bag = new ArrayList<Piece>(nbPiece);
-        for (int i = 0; i < nbPiece+1; i++){
+        this.bag = new LinkedList<Piece>();
+        for (int i = 0; i < nbPiece; i++){
             Piece piece = new Piece();
             this.bag.add(piece);
         }
@@ -27,9 +25,15 @@ public class Bag {
     //2. Taking pieces from the bag. I think the index should always
     //be 0, because we remove the piece from the bag everytime we draw.
     public Piece drawPiece(){
-        Piece currPiece = this.bag.get(0);
-        this.bag.remove(0);
-        return currPiece;
+//        Piece currPiece = this.bag.get(0);
+//        this.bag.remove(0);
+//        return currPiece;
+        try{
+            return bag.pop();
+        }catch (NoSuchElementException e) {
+            return null;
+        }
+
     }
 }
 
