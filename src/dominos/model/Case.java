@@ -16,6 +16,13 @@ public class Case {
         this.occupyingPiece = null;
     }
 
+    public Case(Board board, int xNum, int yNum, Piece piece) {
+        this.board = board;
+        this.xNum = xNum;
+        this.yNum = yNum;
+        this.occupyingPiece = piece;
+    }
+
     public Case(int xNum, int yNum) {
         this.board = null;
         this.xNum = xNum;

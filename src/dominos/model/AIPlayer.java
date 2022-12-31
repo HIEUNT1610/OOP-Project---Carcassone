@@ -18,7 +18,6 @@ public class AIPlayer extends Player {
         for(int i=0; i<4; i++) {
             Case[] availableCases = board.getAvailableCases(p);
             if(availableCases.length!=0){
-                System.out.println("YES");
                 score += choose(availableCases).put(p);
                 return;
             }
