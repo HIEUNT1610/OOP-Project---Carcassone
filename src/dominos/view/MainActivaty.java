@@ -38,7 +38,7 @@ public class MainActivaty {
             nbPiece = Utils.readInt();
         }
         bag = new Bag(nbPiece);
-        board = new Board(nbPiece);
+        board = new Board(nbPiece, bag.drawPiece());
         board.getCase(nbPiece-1, nbPiece-1).put(new Piece());
         System.out.println(board.toAdaptedString());
     }

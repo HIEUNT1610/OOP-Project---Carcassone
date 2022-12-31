@@ -22,6 +22,7 @@ public class InitWindow extends JFrame {
     public InitWindow(JFrame homepage) {
         super();
         this.setSize(300,300);
+        setLocation(120,120);
         for(int i=0; i<nbPlayer; i++) {
             players[i] = new HumanPlayer();
         }

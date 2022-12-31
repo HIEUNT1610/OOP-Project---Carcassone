@@ -22,6 +22,7 @@ public class PlayersTypeWindow extends JDialog {
         super(owner, "Players type", true);
         this.players = players;
         this.setSize(200,50*(players.length+1));
+        setLocation(350,250);
 
         Container panel = this.getContentPane();
         panel.setLayout(new BorderLayout());

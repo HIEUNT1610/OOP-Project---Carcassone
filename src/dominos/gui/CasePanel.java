@@ -25,14 +25,14 @@ public class CasePanel extends JPanel {
         }catch (IOException e) {
             e.printStackTrace();
         }
-//        this.setPreferredSize(new Dimension(50,50));
+//        this.setPreferredSize(new Dimension(100,100));
         this.setPreferredSize(new Dimension(bgPiece.getWidth(),bgPiece.getHeight()));
 
 //        this.setLayout(new GridLayout(5,5,1,1));
 //        for(int i=0; i<25; i++) {
 //            this.add(new JLabel("x"));
 //        }
-//        this.setSize(50,50);
+//        this.setSize(100,100);
     }
 
     @Override

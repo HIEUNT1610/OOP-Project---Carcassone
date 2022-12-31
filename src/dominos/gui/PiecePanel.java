@@ -24,7 +24,9 @@ public class PiecePanel extends JPanel {
         }catch (IOException e) {
             e.printStackTrace();
         }
-        this.setPreferredSize(new Dimension(bgPiece.getWidth(),bgPiece.getHeight()));
+//        this.setPreferredSize(new Dimension(bgPiece.getWidth(),bgPiece.getHeight()));
+        this.setPreferredSize(new Dimension(100,100));
+        this.setSize(100,100);
 
     }
 
@@ -61,9 +63,11 @@ public class PiecePanel extends JPanel {
 
     public void turnLeft() {
         piece.turnLeft();
+        repaint();
     }
 
     public void turnRight() {
         piece.turnRight();
+        repaint();
     }
 }

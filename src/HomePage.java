@@ -12,6 +12,7 @@ public class HomePage extends JFrame {
     public HomePage() {
         super();
         this.setSize(300,300);
+        setLocation(100,100);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // set main layout

@@ -10,7 +10,7 @@ public class Board {
     /**
      * Constructor.
      */
-    public Board(int nbPiece){
+    public Board(int nbPiece, Piece initPiece){
         this.nbPiece = nbPiece;
         //Creating a board size nbPiecex2.
         board = new Case[nbPiece*2][nbPiece*2];
@@ -20,6 +20,7 @@ public class Board {
                 board[x][y] = new Case(this, x, y);
             }
         }
+        board[nbPiece-1][nbPiece-1].put(initPiece);
     }
 
     /**
