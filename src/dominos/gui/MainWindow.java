@@ -1,7 +1,6 @@
 package dominos.gui;
 
 import dominos.model.*;
-import dominos.view.MainActivaty;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -15,14 +14,16 @@ public class MainWindow extends JFrame {
     JFrame parent;
     JButton btnLeft = new JButton("Turn left");
     JButton btnRight = new JButton("Turn right");
-    JLabel currentPlayer = new JLabel("Player0");
-    JComboBox<Case> availableCases = new JComboBox<>();
+    JLabel currentPlayer = new JLabel("Player 0");
+    JComboBox<ComboBoxItem> availableCases = new JComboBox<>();
     PiecePanel currentPiece;
+    JScrollPane boardPanel;
     JButton btnAction = new JButton("Action");
     Board board;
     Bag bag;
     int nbPiece;
     Player[] players;
+    int round = 0;
 
 
     public MainWindow(JFrame parent, int nbPiece, Player[] players) {
@@ -32,29 +33,29 @@ public class MainWindow extends JFrame {
         this.nbPiece = nbPiece;
         bag = new Bag(nbPiece);
         board = new Board(nbPiece, bag.drawPiece());
-//        board.getCase(10,10).put(new Piece());
-//        board.getCase(10,11).put(new Piece());
-//        board.getCase(11,10).put(new Piece());
-//        board.getCase(12,10).put(new Piece());
+//        board.getCase(19,20).put(new Piece());
+//        board.getCase(19,21).put(new Piece());
+//        board.getCase(19,19).put(new Piece());
+//        board.getCase(20,19).put(new Piece());
         this.players = players;
 
-        currentPiece = new PiecePanel(new Piece());
+        currentPiece = new PiecePanel(bag.drawPiece());
+        refreshComboBox();
         this.setLayout(new BorderLayout());
-        add(getBoardPanel(), BorderLayout.CENTER);
+        this.boardPanel = new JScrollPane(getBoardContent());
+        add(boardPanel, BorderLayout.CENTER);
 
-        // Right
+        // Right part ( action part )
         //contain panel
         JPanel divBody = new JPanel(new FlowLayout());
         Box actionPanel = Box.createVerticalBox();
         divBody.setPreferredSize(new Dimension(150,0));
         divBody.setBorder(new EmptyBorder(10,10,10,10));
-//        actionPanel.setBorder(new EmptyBorder(10,10,10,10));
         add(divBody, BorderLayout.EAST);
         divBody.add(actionPanel);
         actionPanel.add(currentPlayer);
 
         actionPanel.add(Box.createVerticalStrut(20));
-//        actionPanel.add(currentPiece);
         JPanel divPiece = new JPanel();
         divPiece.add(currentPiece);
         actionPanel.add(divPiece);
@@ -74,6 +75,7 @@ public class MainWindow extends JFrame {
         actionPanel.add(Box.createVerticalStrut(10));
         JPanel divAction = new JPanel(new GridLayout(1,1));
         divAction.add(btnAction);
+        btnAction.addActionListener(this::btnAction_onClick);
         actionPanel.add(divAction);
 
         this.addWindowListener(new WindowAdapter() {
@@ -82,11 +84,13 @@ public class MainWindow extends JFrame {
                 parent.setVisible(true);
             }
         });
+
+        this.setVisible(true);
+        this.parent.setVisible(false);
+        start();
     }
 
-
-
-    public Container getBoardPanel() {
+    private Container getBoardContent() {
         int top = board.getUpLimit();
         int left = board.getLeftLimit();
         int bottom = board.getBottomLimit();
@@ -102,20 +106,72 @@ public class MainWindow extends JFrame {
             }
         }
         content.setPreferredSize(new Dimension((right-left+3)*105,(bottom-top+3)*105));
-        return new JScrollPane(content);
+        return content;
     }
 
+    private void refreshComboBox() {
+        availableCases.removeAllItems();
+        availableCases.addItem(new ComboBoxItem(null));
+        for(Case item : board.getAvailableCases(currentPiece.getPiece())) {
+            availableCases.addItem(new ComboBoxItem(item));
+        }
+    }
+
+    private void refreshBorder() {
+        boardPanel.setViewportView(getBoardContent());
+        this.revalidate();
+    }
 
     private void btnLeft_onClick(ActionEvent e) {
         this.currentPiece.turnLeft();
+        refreshComboBox();
     }
 
     private void btnRight_onClick(ActionEvent e) {
         this.currentPiece.turnRight();
+        refreshComboBox();
     }
 
-    public void start() {
+    private void btnAction_onClick(ActionEvent e) {
+        ComboBoxItem choice = (ComboBoxItem) availableCases.getSelectedItem();
+        if(! choice.willAbandon()) {
+            int score = choice.getCase().put(currentPiece.getPiece());
+            // add score
+            players[round].addScore(score);
+            refreshBorder();
+        }
+        next();
+    }
 
+    private void start() {
+        round = 0;
+        if(players[round] instanceof AIPlayer) {
+            players[round].action(board, currentPiece.getPiece());
+            refreshBorder();
+            next();
+        }
+    }
+
+    private void next() {
+        if(! bag.hasPiece()) { // game over
+            // disable action button
+            btnAction.setEnabled(false);
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < players.length; i++) {
+                result.append(String.format("Player %d : %d\n", i, players[i].getScore()));
+            }
+            JOptionPane.showMessageDialog(this, result.toString(), "Result", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        round = (round+1) % players.length;
+        currentPlayer.setText("Player " + round);
+        currentPiece.setPiece(bag.drawPiece());
+        if(players[round] instanceof AIPlayer) { // AI
+            players[round].action(board, currentPiece.getPiece());
+            refreshBorder();
+            next();
+        }
+        refreshComboBox();
     }
 
 

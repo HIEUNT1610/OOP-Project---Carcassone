@@ -35,6 +35,8 @@ public class PiecePanel extends JPanel {
         super.paintComponent(g);
         g.drawImage(this.bgPiece, 0, 0, bgPiece.getWidth(), bgPiece.getHeight(), null);
         g.drawRect(0,0,100,100);
+        if(this.piece == null)
+            return;
         int[][] values = new int[4][3];
         for(Direction d : Direction.values()) {
             values[d.ordinal()] = piece.getSideAt(d);
@@ -59,6 +61,11 @@ public class PiecePanel extends JPanel {
 
     public Piece getPiece() {
         return piece;
+    }
+    public PiecePanel setPiece(Piece p) {
+        this.piece = p;
+        repaint();
+        return this;
     }
 
     public void turnLeft() {

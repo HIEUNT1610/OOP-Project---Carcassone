@@ -83,8 +83,21 @@ public class InitWindow extends JFrame {
     }
 
     public void start() {
-        (new MainWindow(this, (Integer) inputNbPiece.getValue(), players)).setVisible(true);
-        this.setVisible(false);
+//        if(! hasHuman()) {
+//            JOptionPane.showMessageDialog(this, "There should be at least one human player", "Can not start", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+        new MainWindow(this, (Integer) inputNbPiece.getValue(), players);
+//        this.setVisible(false);
+    }
+
+    private boolean hasHuman() {
+        for(Player player : players) {
+            if(player instanceof HumanPlayer) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

@@ -35,5 +35,9 @@ public class Bag {
         }
 
     }
+
+    public boolean hasPiece() {
+        return bag.size() > 0;
+    }
 }
 
