@@ -1,5 +1,7 @@
 package dominos.model;
 
+import dominos.Direction;
+
 public class Case {
     private Board board;
     private Piece occupyingPiece;

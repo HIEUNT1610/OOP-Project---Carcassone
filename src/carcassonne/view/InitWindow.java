@@ -1,6 +1,8 @@
-package dominos.gui;
+package carcassonne.view;
 
-import dominos.model.Bag;
+import carcassonne.model.Deck;
+import dominos.gui.MainWindow;
+import dominos.gui.PlayersTypeWindow;
 import dominos.model.Board;
 import dominos.model.HumanPlayer;
 import dominos.model.Player;
@@ -13,9 +15,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class InitWindow extends JFrame {
-
     JComboBox selectNbPlayer = new JComboBox(new Integer[]{2,3,4,5});
-    JSpinner inputNbPiece = new JSpinner(new SpinnerNumberModel(20,5,50,1));
+//    JSpinner inputNbPiece = new JSpinner(new SpinnerNumberModel(20,5,50,1));
     JButton btnSetPlayers = new JButton("Set Players");
     JButton btnStart = new JButton("Start");
     int nbPlayer = 2;
@@ -38,12 +39,12 @@ public class InitWindow extends JFrame {
         this.add(panel);
 
         // create main panel as a grid layout
-        JPanel mainPanel = new JPanel(new GridLayout(4, 2, 10, 5));
+        JPanel mainPanel = new JPanel(new GridLayout(3, 2, 10, 5));
         layout.add(mainPanel);
 
         // number of pieces
-        mainPanel.add(new JLabel("Number of pieces"));
-        mainPanel.add(inputNbPiece);
+//        mainPanel.add(new JLabel("Number of pieces"));
+//        mainPanel.add(inputNbPiece);
 
         // players
         mainPanel.add(new JLabel("Players"));
@@ -85,12 +86,8 @@ public class InitWindow extends JFrame {
     }
 
     public void start() {
-        int nbPiece = (Integer) inputNbPiece.getValue();
-        Bag bag = new Bag(nbPiece);
-        Board board = new Board(nbPiece, bag.drawPiece());
-//        new MainWindow(this, (Integer) inputNbPiece.getValue(), players);
+        Deck bag = new Deck();
+        Board board = new Board(72, bag.drawPiece());
         new MainWindow(this, bag, board, players);
     }
-
-
 }

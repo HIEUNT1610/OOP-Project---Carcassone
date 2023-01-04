@@ -2,13 +2,13 @@ import dominos.model.Board;
 import dominos.model.Case;
 import dominos.model.Piece;
 import dominos.view.MainActivaty;
-//import sun.jvm.hotspot.debugger.cdbg.EnumType;
 
 
 public class Program {
     public static void main(String[] args) {
         System.out.println("Domino's Piece");
-        (new MainActivaty()).start();
+//        (new MainActivaty()).start();
+        System.out.println((100 + 270)%360);
 
 //        Piece p = new Piece();
 //        System.out.println(p.toString('+'));
@@ -28,6 +28,7 @@ public class Program {
 //        System.out.println(board.toAdaptedString());
 
     }
+
 
 
 }

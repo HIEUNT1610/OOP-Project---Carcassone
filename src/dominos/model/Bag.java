@@ -3,7 +3,7 @@ package dominos.model;
 import java.util.*;
 
 public class Bag {
-    LinkedList<Piece> bag;
+    protected LinkedList<Piece> bag;
 
     /**
      * Constructing a Sac with nbPiece number of pieces
@@ -16,6 +16,8 @@ public class Bag {
         }
         this.shuffle();
     }
+
+    public Bag(){this.bag = new LinkedList<>();}
 
     //Methods for Bag
     //1. Shuffle the bag. Collections class method allows directly shuffling the content of the sac

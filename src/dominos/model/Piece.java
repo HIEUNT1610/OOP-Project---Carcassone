@@ -1,5 +1,9 @@
 package dominos.model;
 
+import carcassonne.model.Landscape;
+import carcassonne.model.Side;
+import dominos.Direction;
+
 import java.util.Random;
 
 public class Piece {
@@ -19,6 +23,26 @@ public class Piece {
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 3; j++){
                 pieceNumber[i][j] = random.nextInt(5);
+            }
+        }
+    }
+
+    public Piece(Landscape landscape) {
+        // allocate the array
+        this.pieceNumber = new int[4][3];
+        Side[] sides = landscape.getSides();
+        // generate random numbers to each side of piece
+        for(int i = 0; i < 4; i++){
+            switch (sides[i]) {
+                case LAWN:
+                    pieceNumber[i] = new int[]{0,0,0};
+                    break;
+                case ROAD:
+                    pieceNumber[i] = new int[]{0,1,0};
+                    break;
+                case TOWN:
+                    pieceNumber[i] = new int[]{0,2,0};
+                    break;
             }
         }
     }
@@ -72,7 +96,7 @@ public class Piece {
      * @param side2
      * @return
      */
-    public boolean equalSide(int[] side1, int[] side2) {
+    private boolean equalSide(int[] side1, int[] side2) {
         for(int i = 0; i < 3; i++){
             if(side1[i] != side2[2 - i])
                 return false;
@@ -92,17 +116,6 @@ public class Piece {
 
     @Override
     public String toString() {
-//        StringBuilder res = new StringBuilder();
-//        int[] top = this.getSideAt(Direction.TOP);
-//        int[] left = this.getSideAt(Direction.LEFT);
-//        int[] right = this.getSideAt(Direction.RIGHT);
-//        int[] bottom = this.getSideAt(Direction.BOTTOM);
-//        res.append("* ").append(top[0]).append(" ").append(top[1]).append(" ").append(top[2]).append(" *\n");
-//        res.append(left[2]).append(" * * * ").append(right[0]).append("\n");
-//        res.append(left[1]).append(" * * * ").append(right[1]).append("\n");
-//        res.append(left[0]).append(" * * * ").append(right[2]).append("\n");
-//        res.append("* ").append(bottom[2]).append(" ").append(bottom[1]).append(" ").append(bottom[0]).append(" *\n");
-//        return res.toString();
         return toString('*');
     }
 

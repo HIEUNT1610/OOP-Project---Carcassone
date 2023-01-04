@@ -29,11 +29,18 @@ public class HomePage extends JFrame {
         layout.add(mainPanel);
 
         btnDominos.addActionListener(this::btnDominos_onClick);
+        btnCarcassonne.addActionListener(this::btnCarcassonne_onClick);
     }
 
 
     public void btnDominos_onClick(ActionEvent e) {
         InitWindow window = new InitWindow(this);
+        window.setVisible(true);
+        this.setVisible(false);
+    }
+
+    public void btnCarcassonne_onClick(ActionEvent e) {
+        carcassonne.view.InitWindow window = new carcassonne.view.InitWindow(this);
         window.setVisible(true);
         this.setVisible(false);
     }

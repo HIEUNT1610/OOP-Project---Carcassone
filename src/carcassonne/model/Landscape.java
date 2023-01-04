@@ -19,7 +19,7 @@ public enum Landscape {
     P(2, Side.LAWN, Side.TOWN, Side.LAWN, Side.TOWN),
     Q(4, Side.TOWN, Side.ROAD, Side.LAWN, Side.ROAD),
     R(3, Side.TOWN, Side.ROAD, Side.ROAD, Side.LAWN),
-    S(1, Side.ROAD, Side.TOWN, Side.ROAD, Side.TOWN),
+    S(1, Side.LAWN, Side.TOWN, Side.LAWN, Side.TOWN),
     T(2, Side.TOWN, Side.TOWN, Side.ROAD, Side.TOWN),
     U(1, Side.TOWN, Side.TOWN, Side.TOWN, Side.TOWN),
     V(1, Side.ROAD, Side.ROAD, Side.ROAD, Side.ROAD),
@@ -35,5 +35,13 @@ public enum Landscape {
         sides = new Side[]{top, left, button, right};
     }
 
+    public Side[] getSides() {
+        return this.sides;
+    }
+
     public int getNumber() {return number;}
+
+    public String getImgName() {
+        return (char)(this.ordinal() + 'A') + "";
+    }
 }

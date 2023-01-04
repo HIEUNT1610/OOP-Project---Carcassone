@@ -25,20 +25,42 @@ public class MainWindow extends JFrame {
     Player[] players;
     int round = 0;
 
-
-    public MainWindow(JFrame parent, int nbPiece, Player[] players) {
+    public MainWindow(JFrame parent, Bag bag, Board board, Player[] players) {
         this.parent = parent;
-        setSize(700,500);
-        setLocation(300,200);
-        this.nbPiece = nbPiece;
-        bag = new Bag(nbPiece);
-        board = new Board(nbPiece, bag.drawPiece());
-//        board.getCase(19,20).put(new Piece());
-//        board.getCase(19,21).put(new Piece());
-//        board.getCase(19,19).put(new Piece());
-//        board.getCase(20,19).put(new Piece());
+//        this.nbPiece = nbPiece;
+        this.bag = bag;
+        this.board = board;
         this.players = players;
 
+        initWindow();
+        initComponents();
+        setEvents();
+        this.setVisible(true);
+        start();
+    }
+
+
+//    public MainWindow(JFrame parent, int nbPiece, Player[] players) {
+//        this.parent = parent;
+//        this.nbPiece = nbPiece;
+//        bag = new Bag(nbPiece);
+//        board = new Board(nbPiece, bag.drawPiece());
+//        this.players = players;
+//
+//        initWindow();
+//        initComponents();
+//        setEvents();
+//        this.setVisible(true);
+//        start();
+//    }
+
+    private void initWindow() {
+        setSize(700,500);
+        setLocation(300,200);
+        this.parent.setVisible(false);
+    }
+
+    private void initComponents() {
         currentPiece = new PiecePanel(bag.drawPiece());
         refreshComboBox();
         this.setLayout(new BorderLayout());
@@ -63,11 +85,8 @@ public class MainWindow extends JFrame {
         actionPanel.add(Box.createVerticalStrut(10));
         JPanel divButton = new JPanel(new GridLayout(2,1,5,5));
         divButton.add(btnLeft);
-        btnLeft.addActionListener(this::btnLeft_onClick);
         divButton.add(btnRight);
-        btnRight.addActionListener(this::btnRight_onClick);
         actionPanel.add(divButton);
-
         actionPanel.add(Box.createVerticalStrut(20));
         actionPanel.add(new JLabel("Actions"));
         actionPanel.add(availableCases);
@@ -75,19 +94,7 @@ public class MainWindow extends JFrame {
         actionPanel.add(Box.createVerticalStrut(10));
         JPanel divAction = new JPanel(new GridLayout(1,1));
         divAction.add(btnAction);
-        btnAction.addActionListener(this::btnAction_onClick);
         actionPanel.add(divAction);
-
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                parent.setVisible(true);
-            }
-        });
-
-        this.setVisible(true);
-        this.parent.setVisible(false);
-        start();
     }
 
     private Container getBoardContent() {
@@ -122,6 +129,18 @@ public class MainWindow extends JFrame {
         this.revalidate();
     }
 
+    private void setEvents() {
+        btnLeft.addActionListener(this::btnLeft_onClick);
+        btnRight.addActionListener(this::btnRight_onClick);
+        btnAction.addActionListener(this::btnAction_onClick);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                parent.setVisible(true);
+            }
+        });
+    }
+
     private void btnLeft_onClick(ActionEvent e) {
         this.currentPiece.turnLeft();
         refreshComboBox();
@@ -140,6 +159,7 @@ public class MainWindow extends JFrame {
             players[round].addScore(score);
             refreshBorder();
         }
+        System.out.println(board.toAdaptedString());
         next();
     }
 
