@@ -11,6 +11,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 
+/**
+ * A Dialog to specialize the type of those players (human or AI)
+ */
 public class PlayersTypeWindow extends JDialog {
 
     JButton btnValide = new JButton("Valide");

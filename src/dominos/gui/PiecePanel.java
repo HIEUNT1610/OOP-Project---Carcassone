@@ -1,7 +1,7 @@
 package dominos.gui;
 
 import carcassonne.model.Card;
-import dominos.Direction;
+import dominos.model.Direction;
 import dominos.model.Piece;
 
 import javax.imageio.ImageIO;
@@ -21,7 +21,6 @@ public class PiecePanel extends JPanel {
     public PiecePanel(Piece piece) {
         this.piece = piece;
         bgPiece = getImage();
-//        this.setPreferredSize(new Dimension(bgPiece.getWidth(),bgPiece.getHeight()));
         this.setPreferredSize(new Dimension(100,100));
         this.setSize(100,100);
 
@@ -83,15 +82,11 @@ public class PiecePanel extends JPanel {
 
     public void turnLeft() {
         piece.turnLeft();
-        System.out.println(piece);
-        System.out.println(((Card)piece).getRotationRadio());
         repaint();
     }
 
     public void turnRight() {
         piece.turnRight();
-        System.out.println(piece);
-        System.out.println(((Card)piece).getRotationRadio());
         repaint();
     }
 

@@ -14,7 +14,7 @@ import java.awt.event.WindowEvent;
 
 public class InitWindow extends JFrame {
 
-    JComboBox selectNbPlayer = new JComboBox(new Integer[]{2,3,4,5});
+    JComboBox<Integer> selectNbPlayer = new JComboBox<>(new Integer[]{2,3,4,5});
     JSpinner inputNbPiece = new JSpinner(new SpinnerNumberModel(20,5,50,1));
     JButton btnSetPlayers = new JButton("Set Players");
     JButton btnStart = new JButton("Start");
@@ -55,7 +55,7 @@ public class InitWindow extends JFrame {
         // set player type
         mainPanel.add(new JLabel("Type of Players"));
         mainPanel.add(btnSetPlayers);
-        btnSetPlayers.addActionListener(this::btnSetPlayers);
+        btnSetPlayers.addActionListener(this::btnSetPlayers_onClick);
 
         // start
         JPanel startPanel = new JPanel();
@@ -71,15 +71,16 @@ public class InitWindow extends JFrame {
         });
     }
 
-    public void btnSetPlayers(ActionEvent e){
+    public void btnSetPlayers_onClick(ActionEvent e){
         PlayersTypeWindow window = new PlayersTypeWindow(this, players);
         window.setVisible(true);
     }
 
     public void selectNbPlayer_OnChange(ActionEvent e) {
-        nbPlayer = selectNbPlayer.getSelectedIndex()+2;
+        nbPlayer = selectNbPlayer.getSelectedIndex() + 2;
         players = new Player[nbPlayer];
         for(int i=0; i<nbPlayer; i++) {
+            // human player as default
             players[i] = new HumanPlayer();
         }
     }
@@ -88,7 +89,6 @@ public class InitWindow extends JFrame {
         int nbPiece = (Integer) inputNbPiece.getValue();
         Bag bag = new Bag(nbPiece);
         Board board = new Board(nbPiece, bag.drawPiece());
-//        new MainWindow(this, (Integer) inputNbPiece.getValue(), players);
         new MainWindow(this, bag, board, players);
     }
 

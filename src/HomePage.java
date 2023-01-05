@@ -11,6 +11,7 @@ public class HomePage extends JFrame {
 
     public HomePage() {
         super();
+        this.setTitle("POOIG");
         this.setSize(300,300);
         setLocation(100,100);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -43,9 +44,5 @@ public class HomePage extends JFrame {
         carcassonne.view.InitWindow window = new carcassonne.view.InitWindow(this);
         window.setVisible(true);
         this.setVisible(false);
-    }
-
-    public static void main(String[] args) {
-        (new HomePage()).setVisible(true);
     }
 }

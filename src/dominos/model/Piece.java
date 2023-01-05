@@ -2,7 +2,6 @@ package dominos.model;
 
 import carcassonne.model.Landscape;
 import carcassonne.model.Side;
-import dominos.Direction;
 
 import java.util.Random;
 

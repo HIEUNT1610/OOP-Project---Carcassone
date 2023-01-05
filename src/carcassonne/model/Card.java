@@ -23,14 +23,6 @@ public class Card extends Piece {
         return this;
     }
 
-    @Override
-    public Piece turnRight() {
-        super.turnRight();
-//        rotation = (rotation + 90) % 360;
-//        System.out.println("TrunRight" + rotation);
-        return this;
-    }
-
     public int getRotationRadio() {
         return this.rotation;
     }

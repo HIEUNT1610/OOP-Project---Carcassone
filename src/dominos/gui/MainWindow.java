@@ -1,5 +1,6 @@
 package dominos.gui;
 
+import carcassonne.model.Card;
 import dominos.model.*;
 
 import javax.swing.*;
@@ -97,6 +98,10 @@ public class MainWindow extends JFrame {
         actionPanel.add(divAction);
     }
 
+    /**
+     * Get the Container which contain the whole border
+     * @return the <code>Container</code>
+     */
     private Container getBoardContent() {
         int top = board.getUpLimit();
         int left = board.getLeftLimit();
@@ -159,7 +164,6 @@ public class MainWindow extends JFrame {
             players[round].addScore(score);
             refreshBorder();
         }
-        System.out.println(board.toAdaptedString());
         next();
     }
 
@@ -172,13 +176,23 @@ public class MainWindow extends JFrame {
         }
     }
 
+    /**
+     * When a human player finish one action, prepare the next step.
+     * We draw a piece, and increment the <code>round</code>.
+     * <p>
+     * If the next player is an AI, we action automatically
+     */
     private void next() {
         if(! bag.hasPiece()) { // game over
             // disable action button
             btnAction.setEnabled(false);
             StringBuilder result = new StringBuilder();
-            for (int i = 0; i < players.length; i++) {
-                result.append(String.format("Player %d : %d\n", i, players[i].getScore()));
+            if(currentPiece.getPiece() instanceof Card) {
+                result.append("END");
+            } else {
+                for (int i = 0; i < players.length; i++) {
+                    result.append(String.format("Player %d : %d\n", i, players[i].getScore()));
+                }
             }
             JOptionPane.showMessageDialog(this, result.toString(), "Result", JOptionPane.INFORMATION_MESSAGE);
             return;

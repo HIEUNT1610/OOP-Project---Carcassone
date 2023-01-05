@@ -2,7 +2,7 @@ package dominos.gui;
 
 import carcassonne.model.Card;
 import dominos.model.Case;
-import dominos.Direction;
+import dominos.model.Direction;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -54,7 +54,7 @@ public class CasePanel extends JPanel {
         g.drawImage(this.bgPiece, 0, 0, bgPiece.getWidth(), bgPiece.getHeight(), null);
         g.drawRect(0,0,100,100);
         if(c.isOccupied()){
-            if (!(c.getOccupyingPiece() instanceof Card)) {
+            if (!(c.getOccupyingPiece() instanceof Card)) { // for the domino's
                 int[][] values = new int[4][3];
                 for (Direction d : Direction.values()) {
                     values[d.ordinal()] = c.getOccupyingPiece().getSideAt(d);
@@ -75,12 +75,12 @@ public class CasePanel extends JPanel {
                 g.drawString(values[3][0] + "", 85, 36);
                 g.drawString(values[3][1] + "", 85, 54);
                 g.drawString(values[3][2] + "", 85, 73);
-            } else {
+            } else { // for the carcassonne
                 bgPiece = getRotatedImage(getImage(), ((Card)c.getOccupyingPiece()).getRotationRadio());
                 g.drawImage(this.bgPiece, 0, 0, bgPiece.getWidth(), bgPiece.getHeight(), null);
             }
         }else{
-            // position
+            // draw position on the empty case
             g.drawString(String.format("(%d,%d)", c.getX(), c.getY()), 30,54);
         }
     }
@@ -99,24 +99,5 @@ public class CasePanel extends JPanel {
         final AffineTransformOp rotateOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
         rotateOp.filter(image, rotatedImage);
         return rotatedImage;
-    }
-
-
-    public static void main(String[] args) {
-        JFrame window = new JFrame();
-        Case c = new Case(12,12);
-//        c.put(new Piece());
-        window.getContentPane().add(new CasePanel(c));
-//        JPanel panel = new JPanel(new BorderLayout());
-//        panel.setBorder(new EmptyBorder(2, 3, 2, 3));
-//        JPanel layout = new JPanel(new GridBagLayout());
-//        layout.setBorder(new EmptyBorder(5, 5, 5, 5));
-//        layout.add(new CasePanel(new Case(0,0)));
-//        panel.add(layout, BorderLayout.CENTER);
-//        window.add(panel);
-        window.setSize(500,500);
-        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window.setVisible(true);
-        System.out.println(c);
     }
 }
