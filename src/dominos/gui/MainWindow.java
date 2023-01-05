@@ -22,13 +22,11 @@ public class MainWindow extends JFrame {
     JButton btnAction = new JButton("Action");
     Board board;
     Bag bag;
-    int nbPiece;
     Player[] players;
     int round = 0;
 
     public MainWindow(JFrame parent, Bag bag, Board board, Player[] players) {
         this.parent = parent;
-//        this.nbPiece = nbPiece;
         this.bag = bag;
         this.board = board;
         this.players = players;
@@ -40,22 +38,8 @@ public class MainWindow extends JFrame {
         start();
     }
 
-
-//    public MainWindow(JFrame parent, int nbPiece, Player[] players) {
-//        this.parent = parent;
-//        this.nbPiece = nbPiece;
-//        bag = new Bag(nbPiece);
-//        board = new Board(nbPiece, bag.drawPiece());
-//        this.players = players;
-//
-//        initWindow();
-//        initComponents();
-//        setEvents();
-//        this.setVisible(true);
-//        start();
-//    }
-
     private void initWindow() {
+        setTitle("POOIG - Player " + round);
         setSize(700,500);
         setLocation(300,200);
         this.parent.setVisible(false);
@@ -158,7 +142,9 @@ public class MainWindow extends JFrame {
 
     private void btnAction_onClick(ActionEvent e) {
         ComboBoxItem choice = (ComboBoxItem) availableCases.getSelectedItem();
-        if(! choice.willAbandon()) {
+        if(choice == null)
+            return;
+        if( ! choice.willAbandon()) {
             int score = choice.getCase().put(currentPiece.getPiece());
             // add score
             players[round].addScore(score);
@@ -199,6 +185,7 @@ public class MainWindow extends JFrame {
         }
         round = (round+1) % players.length;
         currentPlayer.setText("Player " + round);
+        this.setTitle("POOIG - Player " + round);
         currentPiece.setPiece(bag.drawPiece());
         if(players[round] instanceof AIPlayer) { // AI
             players[round].action(board, currentPiece.getPiece());

@@ -27,8 +27,8 @@ public enum Landscape {
     X(3, Side.LAWN, Side.TOWN, Side.LAWN, Side.TOWN);
 
 
-    private Side[] sides;
-    private int number;
+    private final Side[] sides;
+    private final int number;
 
     Landscape(int number, Side top, Side left, Side button, Side right){
         this.number = number;

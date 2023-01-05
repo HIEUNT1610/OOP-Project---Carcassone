@@ -27,7 +27,7 @@ public class HumanPlayer extends Player {
      * check if the input choise is in the possible choises
      * @param c input choise from user
      * @param choise all the possible choise
-     * @return
+     * @return A boolean
      */
     public boolean isValide(char c, List<Character> choise) {
         boolean res = false;
@@ -51,7 +51,7 @@ public class HumanPlayer extends Player {
             }else{
                 for (int i = 0; i < availableCases.length; i++) {
                     choices.add((char)(i+'0'));
-                    System.out.printf("%d. (%d, %d)%n", i,  availableCases[i].getX(), availableCases[i].getY());
+                    System.out.printf("%d. (%d, %d)%n", i,  availableCases[i].getRow(), availableCases[i].getCol());
                 }
             }
             choice = Utils.readKey();

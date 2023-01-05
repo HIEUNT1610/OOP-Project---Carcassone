@@ -1,6 +1,5 @@
 package dominos.gui;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import dominos.model.AIPlayer;
 import dominos.model.HumanPlayer;
 import dominos.model.Player;
@@ -19,7 +18,8 @@ public class PlayersTypeWindow extends JDialog {
     JButton btnValide = new JButton("Valide");
     Player[] players;
     boolean[] isHuman;
-    JComboBox<String>[] type;
+    JComboBox<?>[] type;
+
 
     public PlayersTypeWindow(JFrame owner, Player[] players) {
         super(owner, "Players type", true);
@@ -60,8 +60,6 @@ public class PlayersTypeWindow extends JDialog {
             }
         }
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING) );
-//        setVisible(false);
-//        dispose();
     }
 
 

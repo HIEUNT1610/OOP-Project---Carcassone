@@ -23,8 +23,9 @@ public class InitWindow extends JFrame {
 
     public InitWindow(JFrame homepage) {
         super();
+        this.setTitle("Settings for Domino's");
         this.setSize(300,300);
-        setLocation(120,120);
+        this.setLocation(120,120);
         for(int i=0; i<nbPlayer; i++) {
             players[i] = new HumanPlayer();
         }

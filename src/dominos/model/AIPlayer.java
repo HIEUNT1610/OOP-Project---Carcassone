@@ -1,8 +1,5 @@
 package dominos.model;
 
-import dominos.model.Case;
-import dominos.model.Player;
-
 import java.util.Random;
 
 public class AIPlayer extends Player {

@@ -13,12 +13,13 @@ public class ComboBoxItem {
         return c;
     }
 
+
     public boolean willAbandon() {
         return c == null;
     }
 
     @Override
     public String toString() {
-        return c==null? "Abandon" : String.format("(%d, %d)", c.getX(), c.getY());
+        return c==null? "Abandon" : String.format("(%d, %d)", c.getRow(), c.getCol());
     }
 }

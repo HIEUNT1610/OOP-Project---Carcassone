@@ -3,7 +3,6 @@ package dominos.view;
 import dominos.model.*;
 
 public class MainActivaty {
-
     Board board;
     Bag bag;
     int nbPlayer;
@@ -52,7 +51,6 @@ public class MainActivaty {
             System.out.println(currentPiece);
 //            Case[] availableCases = board.getAvailableCases(currentPiece);
             players[round].action(board, currentPiece);
-
 
             round = (round+1) % nbPlayer;
             System.out.println(board.toAdaptedString());

@@ -3,30 +3,16 @@ package dominos.model;
 public class Case {
     private Board board;
     private Piece occupyingPiece;
-    private int xNum;
-    private int yNum;
+    private final int row;
+    private final int col;
 
     /**
      * Constructor
      */
-    public Case(Board board, int xNum, int yNum) {
+    public Case(Board board, int row, int col) {
         this.board = board;
-        this.xNum = xNum;
-        this.yNum = yNum;
-        this.occupyingPiece = null;
-    }
-
-    public Case(Board board, int xNum, int yNum, Piece piece) {
-        this.board = board;
-        this.xNum = xNum;
-        this.yNum = yNum;
-        this.occupyingPiece = piece;
-    }
-
-    public Case(int xNum, int yNum) {
-        this.board = null;
-        this.xNum = xNum;
-        this.yNum = yNum;
+        this.row = row;
+        this.col = col;
         this.occupyingPiece = null;
     }
 
@@ -49,31 +35,31 @@ public class Case {
     /**
      * Coordinate X getter
      */
-    public int getX() {
-        return this.xNum;
+    public int getRow() {
+        return this.row;
     }
     /**
      * Coordinate Y getter
      */
-    public int getY() {
-        return this.yNum;
+    public int getCol() {
+        return this.col;
     }
 
     /**
-     * Get the neighbour case of current case by given direction.
-     * @param board
-     * @param direction
-     * @return
+     * Get the neighbour case of current case by given <code>direction</code>.
+     * @param board The board
+     * @param direction The direction
+     * @return The case object
      */
     public Case getNeighbour(Board board, Direction direction) {
         if(direction == Direction.TOP)
-            return board.getCase(this.xNum - 1, this.yNum);
+            return board.getCase(this.row - 1, this.col);
         if(direction == Direction.BOTTOM)
-            return board.getCase(this.xNum + 1, this.yNum);
+            return board.getCase(this.row + 1, this.col);
         if(direction == Direction.LEFT)
-            return board.getCase(this.xNum, this.yNum - 1);
+            return board.getCase(this.row, this.col - 1);
         if(direction == Direction.RIGHT)
-            return board.getCase(this.xNum, this.yNum + 1);
+            return board.getCase(this.row, this.col + 1);
         return null;
     }
 
@@ -95,23 +81,21 @@ public class Case {
         return score;
     }
 
-    // in fact I want to remove the field `board` to avoid the cycle, and try to pass it by parameter
-    // and to reduce the number of field
     /**
      * test if this case is connected with the "main land", or just alone without connection with any occupied case
-     * @param board the whole board
-     * @return
+     *
+     * @return A boolean
      */
-    public boolean isConnected(Board board) {
+    public boolean isConnected() {
         boolean res = false;
-        if(xNum != 0)
-            res |= board.isCaseOccupied(xNum - 1, yNum);
-        if(xNum != board.getNbPiece()*2-1)
-            res |= board.isCaseOccupied(xNum+1, yNum);
-        if(yNum != 0)
-            res |= board.isCaseOccupied(xNum, yNum-1);
-        if(yNum != board.getNbPiece()*2-1)
-            res |= board.isCaseOccupied(xNum, yNum+1);
+        if(row != 0)
+            res = board.isCaseOccupied(row - 1, col);
+        if(row != board.getNbPiece()*2-1)
+            res |= board.isCaseOccupied(row +1, col);
+        if(col != 0)
+            res |= board.isCaseOccupied(row, col -1);
+        if(col != board.getNbPiece()*2-1)
+            res |= board.isCaseOccupied(row, col +1);
         return res;
     }
 
@@ -122,15 +106,15 @@ public class Case {
         }
         StringBuilder res = new StringBuilder("* * * * *");
         res.append("\n* * * * *");
-        if(xNum<10){
-            res.append("\n* (").append(xNum).append(",");
+        if(row <10){
+            res.append("\n* (").append(row).append(",");
         }else{
-            res.append("\n*(").append(xNum).append(",");
+            res.append("\n*(").append(row).append(",");
         }
-        if(yNum<10) {
-            res.append(yNum).append(") *");
+        if(col <10) {
+            res.append(col).append(") *");
         }else{
-            res.append(yNum).append(")*");
+            res.append(col).append(")*");
         }
         for(int i=0; i<2; i++) {
             res.append("\n* * * * *");

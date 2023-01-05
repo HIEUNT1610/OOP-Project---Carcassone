@@ -81,7 +81,7 @@ public class CasePanel extends JPanel {
             }
         }else{
             // draw position on the empty case
-            g.drawString(String.format("(%d,%d)", c.getX(), c.getY()), 30,54);
+            g.drawString(String.format("(%d,%d)", c.getRow(), c.getCol()), 30,54);
         }
     }
 

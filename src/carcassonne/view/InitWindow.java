@@ -15,7 +15,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class InitWindow extends JFrame {
-    JComboBox selectNbPlayer = new JComboBox(new Integer[]{2,3,4,5});
+    JComboBox<Integer> selectNbPlayer = new JComboBox<>(new Integer[]{2,3,4,5});
 //    JSpinner inputNbPiece = new JSpinner(new SpinnerNumberModel(20,5,50,1));
     JButton btnSetPlayers = new JButton("Set Players");
     JButton btnStart = new JButton("Start");
@@ -24,6 +24,7 @@ public class InitWindow extends JFrame {
 
     public InitWindow(JFrame homepage) {
         super();
+        this.setTitle("Settings for Carcassonne");
         this.setSize(300,300);
         setLocation(120,120);
         for(int i=0; i<nbPlayer; i++) {

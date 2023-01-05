@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Board {
     private Case[][] board;
-    private int nbPiece;
+    private final int nbPiece;
 
     /**
      * Constructor.
@@ -24,16 +24,16 @@ public class Board {
     }
 
     /**
-     * get all the cases that available to put by given piece `p`
+     * get all the cases that available to put by given piece <code>p</code>
      * @param p the piece holden by the player
-     * @return
+     * @return all available cases
      */
     public Case[] getAvailableCases(Piece p) {
         ArrayList<Case> res = new ArrayList<>();
         for (int i=0; i<nbPiece*2; i++) {
             for (int j=0; j<nbPiece*2; j++) {
                 if (!board[i][j].isOccupied()
-                        && board[i][j].isConnected(this)
+                        && board[i][j].isConnected()
                         && canPut(p, board[i][j])) {
                     res.add(board[i][j]);
                 }
@@ -43,10 +43,10 @@ public class Board {
     }
 
     /**
-     * Check if the piece cen be put in given case.
-     * @param p
-     * @param c
-     * @return
+     * Check whether the piece cen be put in given case.
+     * @param p Piece
+     * @param c Case
+     * @return a boolean
      */
     public boolean canPut(Piece p, Case c) {
         boolean res = true;
@@ -163,77 +163,4 @@ public class Board {
                 getRighttLimit()+1
         );
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Check if cases next to the case at (x,y) is occupied or not
-     * @param x
-     * @param y
-     * @return list of empty cases next to (x,y)
-     */
-    public List<Case> nextEmpty(int x, int y){
-        List<Case> notOccupied = new ArrayList<>();
-        if (!board[x][y+1].isOccupied()) {
-            notOccupied.add(board[x][y+1]);
-        }
-        else if (!board[x][y-1].isOccupied()) {
-            notOccupied.add(board[x][y-1]);
-        }
-        else if (!board[x-1][y].isOccupied()) {
-            notOccupied.add(board[x-1][y]);
-        }
-        else if (!board[x+1][y].isOccupied()) {
-            notOccupied.add(board[x+1][y]);
-        }
-        return notOccupied;
-        //this method is just to show a list empty cases that
-        //may be playable, so that the player can choose to
-        //put the current piece.
-    }
-    //I am thinking about if having separate empty check and playable
-    //check is feasible or not. It probably not, and should all be in
-    //the Game class instead.
-    public List<Case> nextPlayable(int x, int y){
-        List<Case> playble = new ArrayList<>();
-        Piece currPiece = this.board[x][y].getOccupyingPiece();
-        if (!board[x][y+1].isOccupied()
-                && (board[x][y+1].getOccupyingPiece().compareSide(currPiece, Direction.LEFT))) {
-            playble.add(board[x][y+1]);
-        }
-        else if (!board[x][y-1].isOccupied()) {
-            playble.add(board[x][y-1]);
-        }
-        else if (!board[x-1][y].isOccupied()) {
-            playble.add(board[x-1][y]);
-        }
-        else if (!board[x+1][y].isOccupied()) {
-            playble.add(board[x+1][y]);
-        }
-        return playble;
-    }
-
-
 }

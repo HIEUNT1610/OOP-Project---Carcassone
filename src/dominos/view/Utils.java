@@ -21,24 +21,4 @@ public class Utils {
         }
         return -1;
     }
-
-    public static double readDouble() {
-        Scanner sc = new Scanner(System.in);
-        if(sc.hasNextDouble()) {
-            return sc.nextDouble();
-        }
-        return -1;
-    }
-
-    public static void pressToContinue(){
-        System.out.println("-------------");
-        System.out.print("c to continue\n> ");
-        while(readKey() != 'c'){
-            System.out.print("(c to continue)> ");
-        }
-    }
-
-    public static char getUpperCase(char c) {
-        return c>=97? (char)(c-32) : c;
-    }
 }
