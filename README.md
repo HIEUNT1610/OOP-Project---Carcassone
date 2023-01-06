@@ -1,7 +1,8 @@
 # POOIG
 
-- HOU Dan
-- Hieu
+- Groupe 80
+- HOU Dan : 22215394
+- HGO Trung Hieu : 22206992
 
 ## Buile code
 build the project
@@ -12,5 +13,3 @@ run the project
 ```bash
 java ./src/Program
 ```
-
-C'est une template pour le README fichier, on va le modifier apres.
