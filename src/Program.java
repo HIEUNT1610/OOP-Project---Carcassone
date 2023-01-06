@@ -1,3 +1,4 @@
+import dominos.view.MainActivaty;
 import java.awt.*;
 
 public class Program {
@@ -6,7 +7,4 @@ public class Program {
 //        (new MainActivaty()).start();
         EventQueue.invokeLater(() -> (new HomePage()).setVisible(true));
     }
-
-
-
 }

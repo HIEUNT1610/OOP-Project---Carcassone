@@ -2,8 +2,6 @@ package carcassonne.model;
 
 import dominos.model.Bag;
 
-import java.util.Collections;
-
 public class Deck extends Bag {
 
     public Deck() {
@@ -14,7 +12,7 @@ public class Deck extends Bag {
             }
         }
         // shuffle
-        Collections.shuffle(bag);
+        shuffle();
     }
 
 }

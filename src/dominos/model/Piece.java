@@ -2,12 +2,11 @@ package dominos.model;
 
 import carcassonne.model.Landscape;
 import carcassonne.model.Side;
-
 import java.util.Random;
 
 public class Piece {
 
-    int[][] pieceNumber;
+    private final int[][] pieceNumber;
     private Case currentCase;
 
     /**
@@ -32,17 +31,7 @@ public class Piece {
         Side[] sides = landscape.getSides();
         // generate random numbers to each side of piece
         for(int i = 0; i < 4; i++){
-            switch (sides[i]) {
-                case LAWN:
-                    pieceNumber[i] = new int[]{0,0,0};
-                    break;
-                case ROAD:
-                    pieceNumber[i] = new int[]{0,1,0};
-                    break;
-                case TOWN:
-                    pieceNumber[i] = new int[]{0,2,0};
-                    break;
-            }
+            pieceNumber[i] = new int[]{0,sides[i].ordinal(),0};
         }
     }
 

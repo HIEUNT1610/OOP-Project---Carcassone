@@ -19,23 +19,16 @@ public class Bag {
 
     public Bag(){this.bag = new LinkedList<>();}
 
-    //Methods for Bag
-    //1. Shuffle the bag. Collections class method allows directly shuffling the content of the sac
     public void shuffle(){
         Collections.shuffle(this.bag);
     }
-    //2. Taking pieces from the bag. I think the index should always
-    //be 0, because we remove the piece from the bag everytime we draw.
+
     public Piece drawPiece(){
-//        Piece currPiece = this.bag.get(0);
-//        this.bag.remove(0);
-//        return currPiece;
         try{
             return bag.pop();
         }catch (NoSuchElementException e) {
             return null;
         }
-
     }
 
     public boolean hasPiece() {
