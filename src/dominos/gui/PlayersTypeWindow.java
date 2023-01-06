@@ -20,7 +20,6 @@ public class PlayersTypeWindow extends JDialog {
     boolean[] isHuman;
     JComboBox<?>[] type;
 
-
     public PlayersTypeWindow(JFrame owner, Player[] players) {
         super(owner, "Players type", true);
         this.players = players;
@@ -48,7 +47,6 @@ public class PlayersTypeWindow extends JDialog {
         panel.add(buttonPanel, BorderLayout.SOUTH);
         buttonPanel.add(btnValide);
         btnValide.addActionListener(this::btnValide_onClick);
-
     }
 
     public void btnValide_onClick(ActionEvent e) {
@@ -61,6 +59,5 @@ public class PlayersTypeWindow extends JDialog {
         }
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING) );
     }
-
 
 }

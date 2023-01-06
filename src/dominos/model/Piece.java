@@ -137,4 +137,5 @@ public class Piece {
     public void setPosition(Case cas) {
         this.currentCase = cas;
     }
+
 }

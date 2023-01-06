@@ -93,5 +93,4 @@ public class InitWindow extends JFrame {
         new MainWindow(this, bag, board, players);
     }
 
-
 }

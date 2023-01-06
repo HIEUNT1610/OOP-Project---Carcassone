@@ -33,7 +33,6 @@ public class HomePage extends JFrame {
         btnCarcassonne.addActionListener(this::btnCarcassonne_onClick);
     }
 
-
     public void btnDominos_onClick(ActionEvent e) {
         InitWindow window = new InitWindow(this);
         window.setVisible(true);

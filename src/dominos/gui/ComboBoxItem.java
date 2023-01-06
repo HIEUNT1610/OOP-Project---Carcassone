@@ -13,7 +13,6 @@ public class ComboBoxItem {
         return c;
     }
 
-
     public boolean willAbandon() {
         return c == null;
     }

@@ -43,10 +43,6 @@ public class InitWindow extends JFrame {
         JPanel mainPanel = new JPanel(new GridLayout(3, 2, 10, 5));
         layout.add(mainPanel);
 
-        // number of pieces
-//        mainPanel.add(new JLabel("Number of pieces"));
-//        mainPanel.add(inputNbPiece);
-
         // players
         mainPanel.add(new JLabel("Players"));
         mainPanel.add(new JLabel()); // placeholder

@@ -6,9 +6,6 @@ public class Case {
     private final int row;
     private final int col;
 
-    /**
-     * Constructor
-     */
     public Case(Board board, int row, int col) {
         this.board = board;
         this.row = row;

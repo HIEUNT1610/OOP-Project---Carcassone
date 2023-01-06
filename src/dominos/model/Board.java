@@ -7,9 +7,6 @@ public class Board {
     private Case[][] board;
     private final int nbPiece;
 
-    /**
-     * Constructor.
-     */
     public Board(int nbPiece, Piece initPiece){
         this.nbPiece = nbPiece;
         //Creating a board size nbPiecex2.
@@ -62,7 +59,6 @@ public class Board {
     public Case getCase(int i, int j) { return board[i][j]; }
     public int getNbPiece() {return nbPiece;}
     public boolean isCaseOccupied(int i, int j) { return getCase(i,j).isOccupied();}
-
 
     public int getUpLimit() {
         int up = nbPiece*2-1;

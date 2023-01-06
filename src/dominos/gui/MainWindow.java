@@ -195,5 +195,4 @@ public class MainWindow extends JFrame {
         refreshComboBox();
     }
 
-
 }
